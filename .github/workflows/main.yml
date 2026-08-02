@@ -19,10 +19,10 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@latest
+      uses: actions/checkout@v7
 
     - name: Setup Android NDK
-      uses: nttld/setup-ndk@latest
+      uses: nttld/setup-ndk@v1.6
       id: setup-ndk
       with:
         ndk-version: r28
@@ -37,7 +37,7 @@ jobs:
       run: make TARGET=${{ inputs.target }} ANDROID_NDK_HOME=${{ steps.setup-ndk.outputs.ndk-path }} release
 
     - name: Upload artifacts 
-      uses: actions/upload-artifact@latest
+      uses: actions/upload-artifact@v7
       with:
         name: ${{ inputs.target }}
         path: "./build/${{ inputs.target }}/*"
