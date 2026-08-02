@@ -10,7 +10,7 @@ on:
       release:
         type: boolean
         description: Enable release build
-        default: true
+        default: false
 
 jobs:
   build:
@@ -29,7 +29,6 @@ jobs:
         local-cache: true
 
     - name: Build (debug)
-      if: ${{ !inputs.release }}
       run: make TARGET=${{ inputs.target }} ANDROID_NDK_HOME=${{ steps.setup-ndk.outputs.ndk-path }}
 
     - name: Build (release)
