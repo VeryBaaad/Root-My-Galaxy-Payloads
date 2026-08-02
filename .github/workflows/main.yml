@@ -26,7 +26,7 @@ jobs:
       id: setup-ndk
       with:
         ndk-version: r28
-        local-cache: true
+        local-cache: false
 
     - name: Build (debug)
       run: make TARGET=${{ inputs.target }} ANDROID_NDK_HOME=${{ steps.setup-ndk.outputs.ndk-path }}
