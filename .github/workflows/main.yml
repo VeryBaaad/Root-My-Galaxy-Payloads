@@ -19,14 +19,14 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v7
+      uses: actions/checkout@latest
 
     - name: Setup Android NDK
-      uses: nttld/setup-ndk@v1
+      uses: nttld/setup-ndk@latest
       id: setup-ndk
       with:
         ndk-version: r28
-        local-cache: ${{ github.event_name == 'push' }}
+        local-cache: true
 
     - name: Build (debug)
       if: ${{ !inputs.release }}
@@ -37,7 +37,7 @@ jobs:
       run: make TARGET=${{ inputs.target }} ANDROID_NDK_HOME=${{ steps.setup-ndk.outputs.ndk-path }} release
 
     - name: Upload artifacts 
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@latest
       with:
         name: ${{ inputs.target }}
         path: "./build/${{ inputs.target }}/*"
